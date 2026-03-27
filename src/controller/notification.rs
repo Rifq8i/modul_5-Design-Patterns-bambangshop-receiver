@@ -28,3 +28,4 @@ pub fn receive(notification: Json<Notification>) -> Result<Json<Notification>> {
         Err(e) => Err(e),
     }
 }
+
