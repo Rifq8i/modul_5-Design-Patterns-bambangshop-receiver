@@ -96,3 +96,17 @@ static function, why did not Rust allow us to do so?**
 Hal ini karena di java kita bisa bebas mengubah isi static var melalui static function karena java punya garbage collector dan runtime yang mengurus hal ini dibelakang. Dibandingkan java, Rust tidak memiliki garbage collector dan ia menjamin keamanan memori dan thread-safety pada saat compile bukan saat runtime, sehingga ia lebih ketat soal kepemilikan data. Oleh karena itu, kita menggunakan lazy_static! untuk initialize static var secara lazy, sehingga rust bisa menjamin bahwa akses ke static var aman secara concurrency dan performance tetap terjaga.
 
 #### Reflection Subscriber-2
+**1. Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not,
+explain why you did not do so. If yes, explain things that you have learned from those other parts of code**  
+Ya, saya sempat mengexplore file-file lain, salah satunya src/lib.rs, dimana saya melihat itu terlihat seperti library yang berisi konfigurasi aplikasi. Walau begitu, karena ini pengalaman pertama saya untuk dev menggunakan rust, saya hanya melihat-lihat saja dan tetap mengikuti langkah tutorial. kedepannya saya berencana untuk explore lebih lanjut setelah paham lebih jauh mengenai rust.  
+
+**2. Since you have completed the tutorial by now and have tried to test your notification system
+by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug
+in more subscribers. How about spawning more than one instance of Main app, will it still be
+easy enough to add to the system?**  
+Observer pattern mempermudah penambahan subscriber baru karena kita bisa menjalankan banyak receiver sekaligus tanpa harus mengubah kode di Main App. kita hanya perlu mencatat tiap URL yang mendaftar. Namun akan lebih rumit jika kita ingin menjalankan lebih dari satu main app, karena masing-masing instance memiliki SUBSCRIBERS static variable sendiri-sendiri yang tidak saling berbagi data, sehingga perlu mekanisme sinkronisasi data antar Publisher agar daftar subscriber tetap konsisten di semua instance Main App.  
+
+**3. Have you tried to make your own Tests, or enhance documentation on your Postman
+collection? If you have tried those features, tell us whether it is useful for your work (it can be
+your tutorial work or your Group Project).**  
+Ya, saya telah mencoba menggunakan firut tests di postman, dimana saya coba untuk membuat script sederhana untuk mengecek apakah status code selalu 200 dan response body tidak kosong. Fitur ini saya rasa akan sangat berguna untuk group project, karena seluruh anggota tim bisa menjalankan collection yang sama dan memastikan  endpoint benar secara otomatis, tanpa harus mengecek satu per satu secara manual.
